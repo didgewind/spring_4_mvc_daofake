@@ -20,7 +20,8 @@ necesitamos alterar el código para que no se pisen la una a la otra.
 1 - Spring validation con EmpleadoValidator (hay que usar como clase Empleado del modelo
 la clase Empleado limpia). El
 validador valida, lo inyectamos en EmpleadosController, lo registramos en el método
-@InitBinder, lo activamos en muestraEmp con el parámetro @Validated (o @Valid, comprobar)
+@InitBinder, lo activamos en muestraEmp con el parámetro @Validated (o @Valid, comprobar).
+Al mostrar un sólo empleado validamos sólo el cif (con bindingResult.hasFieldErrors("cif"))
 
 2 - Validación JSR-303 (hay que usar como clase Empleado del modelo
 la clase Empleado JSR303). Usamos anotaciones en la clase Empleado. El cif es obligatorio,

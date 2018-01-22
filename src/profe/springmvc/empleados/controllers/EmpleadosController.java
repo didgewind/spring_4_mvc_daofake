@@ -98,7 +98,7 @@ public class EmpleadosController {
 	@RequestMapping(params={"muestra"}, method=RequestMethod.POST)
 	public String muestraEmp(@Validated @ModelAttribute Empleado emp, 
 			BindingResult bindingResult, Model model) {
-		if (bindingResult.hasErrors()) {
+		if (bindingResult.hasFieldErrors("cif")) {
 			return "empleados";
 		}
 		Empleado empAux = negocio.getEmpleado(emp.getCif());
