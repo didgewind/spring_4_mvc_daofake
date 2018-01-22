@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+   
+   <context:component-scan base-package="profe.springcore.empleados"/>
+   
+	<bean id="dao" class="profe.springcore.empleados.daos.EmpDAOMock">
+		<property name="empleados">
+			<map>
+				<entry key="423452435T">
+					<bean class="profe.springcore.empleados.model.Empleado">
+						<property name="cif" value="423452435T" />
+						<property name="nombre" value="Antonio" />
+						<property name="apellidos" value="López" />
+						<property name="edad" value="18" />
+					</bean>
+				</entry>
+				<entry key="234234324H">
+					<bean class="profe.springcore.empleados.model.Empleado">
+						<property name="cif" value="234234324H" />
+						<property name="nombre" value="Etna" />
+						<property name="apellidos" value="García" />
+						<property name="edad" value="54" />
+					</bean>
+				</entry>
+				<entry key="3432354543Y">
+					<bean class="profe.springcore.empleados.model.Empleado">
+						<property name="cif" value="3432354543Y" />
+						<property name="nombre" value="Pilar" />
+						<property name="apellidos" value="Pozo" />
+						<property name="edad" value="8" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="gestorEmp" class="profe.springcore.empleados.ui.GestorEmp" >
+		<property name="negocio" ref="empNegocioImp" />
+	</bean>
+
+</beans>

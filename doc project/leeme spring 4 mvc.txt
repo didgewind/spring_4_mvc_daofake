@@ -1,0 +1,33 @@
+Proyecto sin maven de gestión de empleados spring con un dao fake.
+Utiliza spring 4.3 y todo el código fuente de daos, negocio, etc está
+en el proyecto. Es bastante completo, usamos diferentes métodos para los 
+diferentes botones del formulario, un método @ModelAttribute para normalizar
+la opción elegida y presentar unos datos u otros en la página jsp correspondiente,
+
+Además usamos @SessionAttributes para almacenar en la sesión el empleado que se
+encuentra en el modelo, de tal manera que al navegar a una página nueva
+(InfoEmpleadoController - info-empleado.jsp) se van a mostrar datos extra
+del empleado actualmente seleccionado.
+
+Los empleados tienen también aficiones que se eligen con checkboxes
+en esta última página.
+
+Tenemos i18n implantada de forma simple (etiqueta 'Nombre' en empleados.jsp).
+
+Validaciones: la implementamos de dos formas. En función de cuál queramos utilizar
+necesitamos alterar el código para que no se pisen la una a la otra.
+
+1 - Spring validation con EmpleadoValidator (hay que usar como clase Empleado del modelo
+la clase Empleado limpia). El
+validador valida, lo inyectamos en EmpleadosController, lo registramos en el método
+@InitBinder, lo activamos en muestraEmp con el parámetro @Validated (o @Valid, comprobar)
+
+2 - Validación JSR-303 (hay que usar como clase Empleado del modelo
+la clase Empleado JSR303). Usamos anotaciones en la clase Empleado. El cif es obligatorio,
+necesitamos comentar el método @InitBinder en EmpleadosController y que aparezca
+la etiqueta <mvc:annotation-driven /> en el applicationContext.xml
+
+En ambos casos los errores se muestran con la etiqueta <form:errors path="*"/> en la página
+empleados.jsp. En el segundo caso no se muestran las label de los campos en los que se
+produce el error, por lo que es mejor usar <form:errors path="cif"/>, etc al lado de
+cada campo en concreto.
