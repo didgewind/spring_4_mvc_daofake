@@ -12,9 +12,9 @@ import profe.springcore.empleados.model.Empleado;
 @Service
 public class EmpNegocioImp implements EmpNegocio {
 
+	@Resource(name="daoJdbc")
 	private EmpDAO dao;
 
-	@Resource
 	public void setDao(EmpDAO dao) {
 		this.dao = dao;
 	}

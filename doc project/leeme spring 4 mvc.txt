@@ -1,4 +1,7 @@
-Proyecto sin maven de gestión de empleados spring con un dao fake.
+Proyecto sin maven de gestión de empleados spring con un dao fake y a partir de un commit
+también un dao jdbc template. Éste último no almacena los hobbies de un empleado (la bd
+no está preparada).
+
 Utiliza spring 4.3 y todo el código fuente de daos, negocio, etc está
 en el proyecto. Es bastante completo, usamos diferentes métodos para los 
 diferentes botones del formulario, un método @ModelAttribute para normalizar
