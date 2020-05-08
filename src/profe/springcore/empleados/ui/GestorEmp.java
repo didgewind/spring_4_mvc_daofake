@@ -22,7 +22,7 @@ public class GestorEmp {
 	private void go() {
 		this.imprimeEmpleados(negocio.getAllEmpleados());
 		System.out.println("------");
-		System.out.println(negocio.getEmpleado("234234324H"));
+		System.out.println(negocio.getEmpleado("23948745F"));
 	}
 	
 	private void imprimeEmpleado(Empleado emp) {

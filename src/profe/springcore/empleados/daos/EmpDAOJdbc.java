@@ -65,8 +65,8 @@ public class EmpDAOJdbc implements EmpDAO {
 		Empleado emp = null;
 		try {
 			emp = this.jdbcTemplate.queryForObject(
-				ConstantesSQL.SELECT_EMPLEADO,
-				new Object[]{cif}, new EmpleadoMapper());
+				ConstantesSQL.SELECT_EMPLEADO, new EmpleadoMapper(),
+				cif);
 		} catch (EmptyResultDataAccessException e) {
 			logger.info("Intento de recuperación de un empleado que no existe: " + cif);
 		}

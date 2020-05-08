@@ -18,7 +18,15 @@ en esta última página.
 Tenemos i18n implantada de forma simple (etiqueta 'Nombre' en empleados.jsp).
 
 Validaciones: la implementamos de dos formas. En función de cuál queramos utilizar
-necesitamos alterar el código para que no se pisen la una a la otra.
+necesitamos alterar el código para que no se pisen la una a la otra. En ambas usamos
+@Valid y BindingResult, en el caso de validación Spring podemos usar @Validation en vez
+de @Valid, lo que nos incluiría validación por grupos (ejemplo en 
+https://stackoverflow.com/questions/36173332/difference-between-valid-and-validated-in-spring).
+Nota: para usar ValidationUtils no necesitamos ficheros de recursos, podemos dar un mensaje
+de error por defecto de esta manera:
+
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cif", null,
+				null, "Error: el cif es obligatorio");
 
 1 - Spring validation con EmpleadoValidator (hay que usar como clase Empleado del modelo
 la clase Empleado limpia). El
