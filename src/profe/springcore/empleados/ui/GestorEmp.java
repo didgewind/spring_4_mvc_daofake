@@ -1,5 +1,6 @@
 package profe.springcore.empleados.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -20,9 +21,8 @@ public class GestorEmp {
 	}
 
 	private void go() {
+		this.insertaEmpleados();
 		this.imprimeEmpleados(negocio.getAllEmpleados());
-		System.out.println("------");
-		System.out.println(negocio.getEmpleado("23948745F"));
 	}
 	
 	private void imprimeEmpleado(Empleado emp) {
@@ -39,5 +39,24 @@ public class GestorEmp {
 		this.negocio = negocio;
 	}
 
+	private void insertaEmpleados() {
+		try {
+			/*
+			 * Borramos primero los empleados que queremos insertar, para partir de 0...
+			 */
+			negocio.eliminaEmpleado("03957234Y");
+			negocio.eliminaEmpleado("57340934Z");
+			negocio.eliminaEmpleado("21094387T");
+			negocio.eliminaEmpleado("34534545U");
+			List<Empleado> empsAInsertar = new ArrayList<Empleado>();
+			empsAInsertar.add(new Empleado("03957234Y", "Manuel", "Pedraza", 70));
+			empsAInsertar.add(new Empleado("57340934Z", "Inaru", "Escribano", 0));
+			empsAInsertar.add(new Empleado("03957234Y", "J", "G", 40));
+			empsAInsertar.add(new Empleado("34534545U", "Made", "Mata", 41));
+			negocio.insertaEmpleados(empsAInsertar);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

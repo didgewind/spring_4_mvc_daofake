@@ -1,5 +1,6 @@
 package profe.springcore.empleados.negocio;
 
+import java.util.Collection;
 import java.util.List;
 
 import profe.springcore.empleados.model.Empleado;
@@ -22,4 +23,6 @@ public interface EmpNegocio {
 	public abstract boolean modificaEmpleado(Empleado emp);
 	
 	public abstract String[] getAllHobbies();
+	
+	public abstract boolean insertaEmpleados(Collection<Empleado> emps);
 }

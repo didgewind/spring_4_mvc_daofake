@@ -1,6 +1,8 @@
 Proyecto sin maven de gestión de empleados spring con un dao fake y a partir de un commit
-también un dao jdbc template. Éste último no almacena los hobbies de un empleado (la bd
-no está preparada).
+también un dao jdbc template.  En otro commit duplicamos este dao eliminando el control
+de errores con try catch para poder probar transacciones (ver referencia al final
+de este documento). Estos dos daos no almacenan
+los hobbies de un empleado ya que la bd no está preparada.
 
 Utiliza spring 4.3 y todo el código fuente de daos, negocio, etc está
 en el proyecto. Es bastante completo, usamos diferentes métodos para los 
@@ -39,7 +41,21 @@ la clase Empleado JSR303). Usamos anotaciones en la clase Empleado. El cif es ob
 necesitamos comentar el método @InitBinder en EmpleadosController y que aparezca
 la etiqueta <mvc:annotation-driven /> en el applicationContext.xml
 
-En ambos casos los errores se muestran con la etiqueta <form:errors path="*"/> en la página
+En ambos casos los errores se muestran con la etiqueta <form:errors path="*"/> (tiene que estar
+dentro de <form:form>) en la página
 empleados.jsp. En el segundo caso no se muestran las label de los campos en los que se
 produce el error, por lo que es mejor usar <form:errors path="cif"/>, etc al lado de
 cada campo en concreto.
+
+* Para probar transacciones inyectamos al negocio el dao EmpDAOJdbcSinControlDeErrores y 
+desde el gestor invoco insertaEmpleados pasándole una lista de 4 empleados de los
+que tres son nuevos y el tercero ya existe. Los resultados son los siguientes (el primer atributo
+se aplica a insertaEmpleados y el segundo a insertaEmpleado):
+
+- Ambos métodos con SUPPORTS / ambos métodos con NOT_SUPPORTED: se insertan TODOS los empleados, 
+incluso el 4º y luego se lanza la excepción.
+
+- SUPPORTS y REQUIRED / REQUIRED y REQUIRES_NEW / REQUIRED y NOT_SUPPORTED: se insertan únicamente 
+los dos primeros empleados y el tercero lanza la excepción.
+
+- Ambos métodos REQUIRED: no se inserta ningún empleado, como es lógico y natural.
